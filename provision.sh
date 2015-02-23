@@ -8,7 +8,8 @@ apt-get install -y libc6-dev-i386 # needed to build gcc
 mkdir -p /products
 pushd /products
 curl --fail -O \
-     http://scisoft.fnal.gov/scisoft/packages/ups/v5_1_2/ups-5.1.2-Linux64bit%2B3.2-2.15.tar.bz2
-tar xf ups-5.1.2-Linux64bit%2B3.2-2.15.tar.bz2
+     http://scisoft.fnal.gov/scisoft/packages/ups/v5_1_3/ups-5.1.3-Linux64bit%2B3.13-2.19.tar.bz2
+
+tar xf ups-5.1.3-Linux64bit+3.13-2.19.tar.bz2
 
 chown -R vagrant:vagrant /products
