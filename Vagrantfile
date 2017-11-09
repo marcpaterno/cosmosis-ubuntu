@@ -7,6 +7,9 @@
 # you're doing.
 
 Vagrant.configure(2) do |config|
+
+  config.vm.network :forwarded_port, guest: 22, host: 2000
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -28,14 +31,16 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
   sudo apt-get -y update
-  sudo apt-get -y install curl
-  sudo apt-get -y install gcc
-  sudo apt-get -y install g++
-  sudo apt-get -y install emacs24-nox
-  sudo apt-get -y install git
-  sudo apt-get -y install pkg-config
-  sudo apt-get -y install libpng12-dev
-  sudo apt-get -y install libfreetype6-dev
+  sudo apt-get -y install lsb-release curl gcc g++ gcc-multilib emacs24-nox git pkg-config libpng12-dev libfreetype6-dev
+  sudo apt-get -y install tcl-dev tk-dev cvs texinfo  libcurl4-openssl-dev libexpat1-dev libtk8.6 libtcl8.6 gettext autoconf dpkg-dev lsb-core libbz2-dev libgdbm-dev liblzma-dev libreadline-dev libgl1-mesa-dev libglu1-mesa-dev libX11-dev libXmu-dev libxpm-dev libxft-dev libxext-dev subversion
+  sudo apt-get -y install --install-recommends linux-generic-lts-vivid
+  sudo apt-get -y install build-essential man vim autoconf libtool
+  git clone https://github.com/singularityware/singularity.git
+  cd singularity
+  ./autogen.sh
+  ./configure --prefix=/usr/local
+  make
+  sudo make install
   sudo apt-get -y autoremove
 SHELL
 end
